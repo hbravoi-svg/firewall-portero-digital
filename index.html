@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Firewall: El Portero Digital</title>
-<meta name="description" content="Juego multijugador en 3D para la motivación de la Sesión 3 (Firewall): cada estudiante es el portero de la computadora y decide qué conexiones permitir o bloquear según las reglas.">
+<title>Firewall: El Muro Digital</title>
+<meta name="description" content="Juego multijugador en 3D para la motivación de la Sesión 3 (Firewall): cada estudiante es el muro de la computadora y decide qué conexiones permitir o bloquear según las reglas.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&display=swap" rel="stylesheet">
 <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
@@ -317,7 +317,7 @@ details.how li{margin:.35em 0;line-height:1.45}
 <section class="screen" id="sBoard">
   <div class="card">
     <div class="kicker" id="bKicker">Tabla de posiciones</div>
-    <h2 class="orb">🏅 Mejores porteros</h2>
+    <h2 class="orb">🏅 Mejores defensores del muro</h2>
     <div id="bYou"></div>
     <ol class="board" id="bList"></ol>
     <div class="row" id="bBtns" style="margin-top:12px"></div>
@@ -382,10 +382,10 @@ const ROUNDS = [
     ]}
 ];
 const BADGES = [
-  {min:1,   icon:'🏆', name:'Portero de Oro'},
+  {min:1,   icon:'🏆', name:'Muro de Oro'},
   {min:.75, icon:'🥈', name:'Guardián Experto'},
   {min:.5,  icon:'🛡️', name:'Vigilante en Formación'},
-  {min:0,   icon:'🔰', name:'Aprendiz de Portero'}
+  {min:0,   icon:'🔰', name:'Aprendiz del Muro'}
 ];
 
 /* =====================================================================
@@ -542,12 +542,12 @@ const S = (() => {
     box(.14,.56,.14, navy, 0,-.26,0, robot.armL);
     const clip = textPlane(.42, .52, 210, 260, (g,w,h) => {
       g.fillStyle='#f8fafc'; g.fillRect(0,0,w,h); g.fillStyle='#475569'; g.fillRect(70,0,70,22);
-      g.fillStyle='#0f172a'; g.font='bold 30px "Segoe UI", sans-serif'; g.fillText('LISTA', 62, 58);
-      g.font='26px "Segoe UI", sans-serif'; ['✔ Ana','✔ Luis','✔ Carla'].forEach((t,i)=>{ g.fillStyle='#15803d'; g.fillText(t, 22, 110+i*48); });
+      g.fillStyle='#0f172a'; g.font='bold 30px "Segoe UI", sans-serif'; g.fillText('REGLAS', 50, 58);
+      g.font='26px "Segoe UI", sans-serif'; [['✔ Permitir','#15803d'],['✖ Bloquear','#b91c1c'],['✔ Revisar','#1d4ed8']].forEach(([t,c],i)=>{ g.fillStyle=c; g.fillText(t, 22, 110+i*48); });
     });
     clip.position.set(0,-.62,.12); clip.rotation.x = -.6; robot.armL.add(clip);
     const tag = textPlane(1.6, .4, 400, 100, (g,w,h) => { rrect(g,4,4,w-8,h-8,20); g.fillStyle='rgba(8,14,38,.85)'; g.fill(); g.strokeStyle='#fbbf24'; g.lineWidth=5; g.stroke();
-      g.fillStyle='#fbbf24'; g.font='bold 50px Orbitron, "Segoe UI", sans-serif'; g.textAlign='center'; g.textBaseline='middle'; g.fillText('PORTERO', w/2, h/2+3); });
+      g.fillStyle='#fbbf24'; g.font='bold 50px Orbitron, "Segoe UI", sans-serif'; g.textAlign='center'; g.textBaseline='middle'; g.fillText('GUARDIA', w/2, h/2+3); });
     tag.position.set(-2.45, 2.35, 1.15); world.add(tag); robot.tag = tag;
   }
 
@@ -569,7 +569,7 @@ const S = (() => {
   function drawScreen(state){
     const {g, t} = pcScreen.userData.ct, w = 512, h = 320;
     const st = { ok:['#064e3b','#022c22','🛡️','Firewall de Windows Defender','ACTIVADO','Red privada ✔   Red pública ✔','#4ade80'],
-      recv:['#0c4a6e','#082f49','📥','Conexión permitida','RECIBIDO','El portero dejó pasar el paquete','#7dd3fc'],
+      recv:['#0c4a6e','#082f49','📥','Conexión permitida','RECIBIDO','El muro dejó pasar el paquete','#7dd3fc'],
       sent:['#4a044e','#2e0333','📤','Conexión permitida','ENVIADO','Tu PC se conectó a internet','#f0abfc'],
       alarm:['#7f1d1d','#450a0a','⚠️','¡CONEXIÓN PELIGROSA!','¡INTRUSO!','Dejaste pasar algo que no cumplía las reglas','#fca5a5'] }[state];
     const gr = g.createLinearGradient(0,0,0,h); gr.addColorStop(0, st[0]); gr.addColorStop(1, st[1]); g.fillStyle = gr; g.fillRect(0,0,w,h);
