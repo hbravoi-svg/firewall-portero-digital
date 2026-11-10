@@ -1104,7 +1104,7 @@ function startPractice(){
   ROLE = 'practice'; host = new Host(true); C.score = 0; updateScore();
   const pl = host.join('Tú', m => setTimeout(() => C.handle(m), 0), 'local');
   C.send = m => setTimeout(() => host.onAnswer(pl, m), 0);
-  host.start(ROUNDS.map((r,i) => i), 12);
+  host.start(ROUNDS.map((r,i) => i), 20);   // Práctica: 20 segundos por caso
 }
 document.addEventListener('click', e => {
   if(e.target.closest('[data-back]')){ show('sMenu'); }
