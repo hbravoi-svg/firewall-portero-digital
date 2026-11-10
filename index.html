@@ -232,8 +232,7 @@ details.how li{margin:.35em 0;line-height:1.45}
   <div class="card">
     <div class="kicker">EPT · Computación e Informática · Sesión 3</div>
     <h1 class="title">🔥 FIREWALL</h1>
-    <h2 class="sub">El Portero Digital</h2>
-    <p class="lead">El firewall es el <b>portero</b> de tu computadora: deja pasar solo las conexiones que cumplen las reglas y bloquea a las demás. ¿Quién será el mejor portero del aula?</p>
+    <p class="lead">El firewall es el <b>MURO</b> de tu computadora: deja pasar solo las conexiones que cumplen las reglas y bloquea a las demás.</p>
     <div class="menu-grid">
       <button class="opt" id="mHost"><span class="ico">👨‍🏫</span><b>Crear sala</b><small>Docente · se proyecta en la pizarra</small></button>
       <button class="opt" id="mJoin"><span class="ico">🎮</span><b>Unirme</b><small>Estudiante · con el código de la sala</small></button>
@@ -361,17 +360,7 @@ const store = {
    ans: 'allow' = permitir, 'block' = bloquear
    ===================================================================== */
 const ROUNDS = [
-  { title:'Ronda 1 · El portero', subtitle:'Solo pasan los que están en la lista', dir:'in', tag:'🚪 QUIERE ENTRAR AL AULA',
-    dirText:'🚪 Personas que quieren ENTRAR (igual que en la dinámica)',
-    rules:[ {ok:true, text:'Lista autorizada: Ana, Luis y Carla'}, {ok:false, text:'Cualquier otro nombre NO pasa'} ],
-    packets:[
-      {icon:'🧑', title:'Ana', sub:'Muestra su tarjeta: "Ana"', ans:'allow', why:'Ana está en la lista autorizada: el portero la deja pasar.'},
-      {icon:'🧑', title:'Pedro', sub:'Muestra su tarjeta: "Pedro"', ans:'block', why:'Pedro no está en la lista. El portero no lo deja pasar.'},
-      {icon:'🧑', title:'Luis', sub:'Muestra su tarjeta: "Luis"', ans:'allow', why:'Luis está en la lista autorizada.'},
-      {icon:'🕵️', title:'Anna', sub:'"¡Soy Ana, déjame pasar!"', ans:'block', why:'¡Cuidado! "Anna" no es "Ana". Los atacantes usan nombres parecidos para engañar al portero.'},
-      {icon:'🧑', title:'Carla', sub:'Muestra su tarjeta: "Carla"', ans:'allow', why:'Carla está en la lista autorizada.'}
-    ]},
-  { title:'Ronda 2 · Reglas de entrada', subtitle:'Conexiones que LLEGAN a tu PC desde internet', dir:'in',
+  { title:'Ronda 1 · Reglas de entrada', subtitle:'Conexiones que LLEGAN a tu PC desde internet', dir:'in',
     dirText:'⬇ ENTRADA: de Internet hacia tu PC',
     rules:[ {ok:true, text:'Windows Update (actualizaciones)'}, {ok:true, text:'Correo del colegio'}, {ok:false, text:'Conexiones desconocidas que nadie pidió'} ],
     packets:[
@@ -381,7 +370,7 @@ const ROUNDS = [
       {icon:'🔍', title:'Escáner de puertos', sub:'Toca todas las "puertas" de tu PC', ans:'block', why:'Los atacantes buscan una puerta abierta. El firewall mantiene cerradas las que no están en las reglas.'},
       {icon:'🎁', title:'premio_gratis.exe', sub:'"¡Ganaste un celular! Déjame entrar"', ans:'block', why:'Conexión desconocida y sospechosa: no está en las reglas, se bloquea.'}
     ]},
-  { title:'Ronda 3 · Reglas de salida', subtitle:'Conexiones que tu PC INICIA hacia internet', dir:'out',
+  { title:'Ronda 2 · Reglas de salida', subtitle:'Conexiones que tu PC INICIA hacia internet', dir:'out',
     dirText:'⬆ SALIDA: de tu PC hacia Internet',
     rules:[ {ok:false, text:'Regla "Bloquear navegador – prueba": msedge.exe'}, {ok:true, text:'chrome.exe y Teams.exe pueden salir'}, {ok:false, text:'Programas desconocidos'} ],
     packets:[
@@ -390,14 +379,6 @@ const ROUNDS = [
       {icon:'🕷️', title:'keylogger.exe', sub:'Quiere enviar tus contraseñas', ans:'block', why:'Programa desconocido intentando salir. ¡El firewall también vigila lo que SALE de tu PC!'},
       {icon:'💬', title:'Teams.exe', sub:'Quiere entrar a la clase virtual', ans:'allow', why:'Teams.exe está permitido.'},
       {icon:'🌐', title:'msedge.exe', sub:'Quiere abrir www.youtube.com', ans:'block', why:'La regla bloquea al programa msedge.exe completo, sin importar la página.'}
-    ]},
-  { title:'Ronda 4 · ¡Regla deshabilitada!', subtitle:'Clic derecho sobre la regla → Deshabilitar regla (Paso 5)', dir:'out',
-    dirText:'⬆ SALIDA: de tu PC hacia Internet',
-    rules:[ {ok:'off', text:'"Bloquear navegador – prueba" (msedge.exe): DESHABILITADA'}, {ok:true, text:'chrome.exe y Teams.exe pueden salir'}, {ok:false, text:'Programas desconocidos'} ],
-    packets:[
-      {icon:'🌐', title:'msedge.exe', sub:'Quiere abrir www.minedu.gob.pe', ans:'allow', why:'La regla está deshabilitada: Edge vuelve a navegar y la página SÍ carga.'},
-      {icon:'⛏️', title:'minero_cripto.exe', sub:'Quiere usar tu PC para minar', ans:'block', why:'Sigue siendo un programa desconocido: la regla de "programas desconocidos" lo bloquea.'},
-      {icon:'🌐', title:'msedge.exe', sub:'Quiere abrir www.youtube.com', ans:'allow', why:'Con la regla deshabilitada, msedge.exe puede salir a cualquier página.'}
     ]}
 ];
 const BADGES = [
@@ -869,9 +850,9 @@ function renderBoard(m, role){
 }
 
 function reflectHTML(){
-  return `<div class="reflect"><h3>🤔 Reflexionemos</h3><ol><li>¿Qué hizo el portero?</li><li>¿Quién cumple esa función en una computadora conectada a internet?</li></ol>
+  return `<div class="reflect"><h3>🤔 Reflexionemos</h3><ol><li>¿Qué hizo el MURO?</li><li>¿Quién cumple esa función en una computadora conectada a internet?</li></ol>
     <button class="btn cyan" id="rShow">Mostrar respuesta</button>
-    <div class="answer hidden" id="rAns">🔥 <b>El FIREWALL (cortafuegos)</b>: controla las conexiones de red que <b>entran</b> y <b>salen</b> del equipo, y las <b>permite</b> o las <b>bloquea</b> según reglas. ¡Es el portero de la computadora!</div></div>`;
+    <div class="answer hidden" id="rAns">🔥 <b>El FIREWALL (cortafuegos)</b>: controla las conexiones de red que <b>entran</b> y <b>salen</b> del equipo, y las <b>permite</b> o las <b>bloquea</b> según reglas. ¡Es el MURO de la computadora!</div></div>`;
 }
 function renderFinal(m, role){
   hud(false); S.clear(); show('sFinal'); Sfx.fanfare(); bigConfetti();
